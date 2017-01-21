@@ -3,26 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FractureCleanup : MonoBehaviour {
-    public float fragmentDuration;
-    // Use this for initialization
-    void Start()
-    {
-        tagChildren();
-        StartCoroutine(Cleanup());
-    }
+  // Fragment duration.
+  public float fragmentDuration;
 
-    IEnumerator Cleanup()
-    {
-        yield return new WaitForSeconds(fragmentDuration);
-        Destroy(gameObject);
-    }
-    void tagChildren()
-    {
-        Transform[] childTransforms = GetComponentsInChildren<Transform>();
-        foreach (Transform t in childTransforms)
-        {
-            t.gameObject.tag = "Fragment";
-        }
-    }
+  void Start () {
+    StartCoroutine(Cleanup());
+  }
 
+  IEnumerator Cleanup () {
+    yield return new WaitForSeconds(fragmentDuration);
+    GameObject.Destroy(gameObject);
+  }
 }

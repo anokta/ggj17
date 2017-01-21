@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour {
   void Start () {
     city.GenerateCity();
   }
-	
+
   void Update () {
+#if UNITY_EDITOR
     if (Input.GetKeyDown(KeyCode.R)) {
       // Debug reset.
       city.GenerateCity();
     }
   }
+#endif
 }

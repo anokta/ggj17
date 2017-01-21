@@ -12,6 +12,14 @@ public class InputManager : MonoBehaviour {
   // Max raycast distance.
   public float maxRaycastDistance = 100.0f;
 
+  public float maxDeltaMagnitude = 2.0f;
+
+  public float minSwipeDelta = 2.0f;
+  public float minSwipeSpeed = 4.0f;
+
+  // Earthquake controller.
+  public EarthquakeController controller;
+
   // Current input state.
   private enum InputState {
     Down,
@@ -68,21 +76,30 @@ public class InputManager : MonoBehaviour {
   }
 
   private void OnInputDown () {
-    Debug.Log("Down: " + pressPosition);
+    controller.StartEarthquake(pressPosition);
   }
 
   private void OnInputUp () {
-    Debug.Log("Up: " + position);
+    Vector3 swipeDelta = position - pressPosition;
+    float swipeDeltaMagnitude = swipeDelta.magnitude;
+    float swipeDeltaTime = Time.time - pressTime;
+    float swipeSpeed = swipeDeltaTime > 0.0f ? swipeDeltaMagnitude / swipeDeltaTime : 0.0f;
+
+    if (swipeDeltaMagnitude > minSwipeDelta && swipeSpeed > minSwipeSpeed) {
+      controller.SendWave(position, swipeDelta.normalized);
+    } else {
+      controller.EndEarthquake();
+    }
 
   }
 
   private void OnInputDrag (Vector3 delta) {
-    Debug.Log("Drag: " + delta);
-
+    float percent = delta.magnitude / maxDeltaMagnitude;
+    controller.Intensify(position, percent);
   }
 
   // Returns the current input state.
-  private InputState GetInputState() {
+  private InputState GetInputState () {
     // TODO(anokta): Change these for touch input.
     if (Input.GetMouseButtonDown(0)) {
       return InputState.Down;

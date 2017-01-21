@@ -29,7 +29,8 @@ public class CityBuilder : MonoBehaviour {
         Vector3 position = new Vector3(2.0f * x - xCount, 0.5f * height, 2.0f * y - yCount);
 
         GameObject building = 
-          GameObject.Instantiate(buildingPrefab, position, Quaternion.identity, cityRoot.transform);
+          (GameObject) GameObject.Instantiate(buildingPrefab, position, Quaternion.identity, 
+                                              cityRoot.transform);
         building.transform.localScale = new Vector3(1.0f, height, 1.0f);
       }
     }
