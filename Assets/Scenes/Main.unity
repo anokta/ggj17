@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814770158b03264598cbf182ef4c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 1164083790007576, guid: 1baefd50f07a23d40bd6ec0fa4cd1e14,
+  buildingPrefab: {fileID: 1610278609485158, guid: 2ced5d6c8297adc43880aea16504a196,
     type: 2}
   roadStraightPrefab: {fileID: 1783292014260984, guid: beee198f5c738db42ba9a27ca469eb87,
     type: 2}

@@ -61,7 +61,8 @@ public class CityBuilder : MonoBehaviour {
 						GameObject building = 
 							(GameObject) GameObject.Instantiate(buildingPrefab, position, Quaternion.identity, 
 								cityRoot.transform);
-						building.transform.localScale = new Vector3(width, height, length);
+						building.transform.localScale = new Vector3(width, length, height);
+						building.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
 						building.transform.GetComponent<Renderer>().material = buildingMaterials[Random.Range(0,buildingMaterials.Length)];
 					}
 				}
