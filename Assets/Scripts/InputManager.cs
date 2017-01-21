@@ -8,7 +8,10 @@ public class InputManager : MonoBehaviour {
 
   // Raycast layer mask for interaction.
   public LayerMask inputMask;
-	
+
+  // Audio manager.
+  public AudioManager audioManager;
+
   // Max raycast distance.
   public float maxRaycastDistance = 100.0f;
 
@@ -77,7 +80,9 @@ public class InputManager : MonoBehaviour {
   }
 
   private void OnInputDown () {
+    audioManager.StartEarthquakeSfx();
     controller.StartEarthquake(pressPosition);
+
   }
 
   private void OnInputUp () {
@@ -88,15 +93,17 @@ public class InputManager : MonoBehaviour {
 
     if (swipeDeltaMagnitude > minSwipeDelta && swipeSpeed > minSwipeSpeed) {
       controller.SendWave(position, swipeDelta.normalized);
+      audioManager.PlayWaveSfx();
     } else {
+      audioManager.EndEarthquakeSfx();
       controller.EndEarthquake();
     }
-
   }
 
   private void OnInputDrag (Vector3 delta) {
     float percent = delta.magnitude / maxDeltaMagnitude;
     controller.Intensify(position, percent);
+    audioManager.Intensify(percent);
   }
 
   // Returns the current input state.
