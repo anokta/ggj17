@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 1814770158b03264598cbf182ef4c20b
-timeCreated: 1484974408
-licenseType: Pro
+timeCreated: 1485028704
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - buildingPrefab: {fileID: 1187135839978816, guid: 22e481e913905aa42ab1419fb1092a6d,
+      type: 2}
+  - roadStraight: {instanceID: 0}
+  - road4way: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
