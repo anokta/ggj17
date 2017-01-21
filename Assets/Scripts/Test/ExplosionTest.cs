@@ -10,7 +10,7 @@ public class ExplosionTest : MonoBehaviour {
 
   // Force power in kg*m/s^2.
   public float forcePower = 10.0f;
- 
+
   // Force radius in meters.
   public float forceRadius = 10.0f;
 
@@ -25,6 +25,10 @@ public class ExplosionTest : MonoBehaviour {
   public float sineAmplitude = 1.0f;
   public float sineFrequency = 0.5f;
   private float phasor = 0.0f;
+
+  public float targetRadius;
+  public float expandPeriod;
+  private bool expanding; 
 
   void Update () {
     RaycastHit hit;
@@ -41,6 +45,8 @@ public class ExplosionTest : MonoBehaviour {
       // Send an impulse on click.
       earthquake.AddForce(position, impulsePower, impulseRadius, ForceMode.Impulse);
       scale = Vector3.one * impulseRadius;
+    } else if (Input.GetMouseButtonDown(1)) {
+      phasor = 0.0f;
     } else if (Input.GetMouseButton(1)) {
       scale = Vector3.one * forceRadius;
       position.y = sineAmplitude * Mathf.Sin(2.0f * Mathf.PI * phasor);
@@ -51,7 +57,19 @@ public class ExplosionTest : MonoBehaviour {
 
       transform.position = position;
       earthquake.AddForce(position, forcePower, forceRadius, ForceMode.Force);
-
+    } else if (Input.GetMouseButtonDown(2)) {
+      transform.position = position;
+      expanding = true;
+    }
+    if (expanding) {
+      phasor += Time.deltaTime / expandPeriod;
+      float currentRadius = targetRadius * phasor;
+      scale = Vector3.one * currentRadius;
+      earthquake.AddForce(position, forcePower, currentRadius, ForceMode.Force);
+      if (phasor >= 1.0f) {
+        phasor = 0.0f;
+        expanding = false;
+      }
     }
 
     transform.localScale = 0.5f * scale;

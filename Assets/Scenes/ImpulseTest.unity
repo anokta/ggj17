@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2b3a907182f144ab766895fb5e3aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardsModifier: 5
+  upwardsModifier: 2
 --- !u!23 &180849052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -353,6 +353,8 @@ MonoBehaviour:
   impulseRadius: 2.5
   sineAmplitude: 0.75
   sineFrequency: 2
+  targetRadius: 30
+  expandPeriod: 2
 --- !u!1 &198641399
 GameObject:
   m_ObjectHideFlags: 0

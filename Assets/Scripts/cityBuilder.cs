@@ -2,34 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cityBuilder : MonoBehaviour {
+public class CityBuilder : MonoBehaviour {
+  // Building prefab.
+  public GameObject buildingPrefab;
+ 
+  // Number of buildings per axis.
+  public int xCount = 10;
+  public int yCount = 10;
 
-    public int xCount = 20;
-    public int yCount = 20;
+  // Height range.
+  public float minHeight = 0.5f;
+  public float maxHeight = 2.0f;
 
-	// Use this for initialization
-	void Start () {
-        createCity();
+  // Root game object to hold buildings.
+  private GameObject cityRoot = null;
+
+  public void GenerateCity () {
+    if (cityRoot != null) {
+      GameObject.Destroy(cityRoot);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    cityRoot = new GameObject("City");
 
-    void createCity()
-    {
-        for(int i = 0; i < xCount; i++)
-        {
-            for(int e = 0; e < yCount; e++)
-            {
-                GameObject Bldg = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                float heightRange = i / 30f + .5f;
+    for (int x = 0; x < xCount; ++x) {
+      for (int y = 0; y < yCount; ++y) {
+        float height = Random.Range(minHeight, maxHeight);
+        Vector3 position = new Vector3(2.0f * x - xCount, 0.5f * height, 2.0f * y - yCount);
 
-                float height = Random.Range(.5f, heightRange * 6f);
-                Bldg.transform.localScale = new Vector3(1f, height, 1f);
-                Bldg.transform.position = new Vector3(2f * i, height / 2f, 2f * e);
-            }
-        }
+        GameObject building = 
+          GameObject.Instantiate(buildingPrefab, position, Quaternion.identity, cityRoot.transform);
+        building.transform.localScale = new Vector3(1.0f, height, 1.0f);
+      }
     }
+  }
 }
