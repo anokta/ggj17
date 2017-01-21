@@ -11,6 +11,9 @@ public class EarthquakeController : MonoBehaviour {
   // Layer mask for destructable objects.
   public LayerMask destructableMask;
 
+  public int maxTotalFragments = 300;
+  int currentFragments = 0;
+
   public float maxBuildingVelocity = 0.5f;
 
   // Upwards modifier to lift objects via explosion.
@@ -126,26 +129,28 @@ public class EarthquakeController : MonoBehaviour {
           GameObject.Destroy(body.gameObject);
           while (fragmentCount > 0)
           {
-            GameObject fragments =
-            (GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
-                          collider.transform.rotation);
             fragmentCount -= 1;
-
-
-            Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
-            if (fragmentBodies != null)
+            if (currentFragments < maxTotalFragments)
             {
-              foreach (var fragmentBody in fragmentBodies)
+              GameObject fragments =
+              (GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
+                            collider.transform.rotation);
+              currentFragments += 8;
+
+              Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
+              if (fragmentBodies != null)
               {
-                fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+                foreach (var fragmentBody in fragmentBodies)
+                {
+                  fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+                }
               }
             }
           }
-          } else {
-            body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
-          }
+        } else {
+          body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
         }
-      
+      }      
     }
   }
 }
