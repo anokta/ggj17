@@ -122,21 +122,30 @@ public class EarthquakeController : MonoBehaviour {
       if (body != null) {
         if (body.velocity.magnitude > maxBuildingVelocity) {
           // TODO(anokta): Move this outside to update routine.
-          GameObject fragments = 
-            (GameObject) GameObject.Instantiate(fragmentsPrefab, collider.transform.position, 
-                                                collider.transform.rotation);
+          int fragmentCount = (int)Mathf.Round(body.gameObject.transform.localScale.y);
           GameObject.Destroy(body.gameObject);
+          while (fragmentCount > 0)
+          {
+            GameObject fragments =
+            (GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
+                          collider.transform.rotation);
+            fragmentCount -= 1;
 
-          Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
-          if (fragmentBodies != null) {
-            foreach (var fragmentBody in fragmentBodies) {
-              fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+
+            Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
+            if (fragmentBodies != null)
+            {
+              foreach (var fragmentBody in fragmentBodies)
+              {
+                fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+              }
             }
           }
-        } else {
-          body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+          } else {
+            body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+          }
         }
-      }
+      
     }
   }
 }
