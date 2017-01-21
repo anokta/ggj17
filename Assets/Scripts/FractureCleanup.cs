@@ -12,6 +12,7 @@ public class FractureCleanup : MonoBehaviour {
 
   IEnumerator Cleanup () {
     yield return new WaitForSeconds(fragmentDuration);
-    GameObject.Destroy(gameObject);
+    GameObject.Destroy(gameObject.GetComponent<Rigidbody>());
+    //GameObject.Destroy(gameObject);
   }
 }

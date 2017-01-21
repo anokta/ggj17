@@ -55,6 +55,7 @@ public class InputManager : MonoBehaviour {
     case InputState.Down:
       if (interact) {
         pressPosition = hit.point;
+        position = pressPosition;
         pressTime = Time.time;
         OnInputDown();
       }
