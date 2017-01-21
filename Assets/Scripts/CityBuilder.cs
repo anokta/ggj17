@@ -7,6 +7,7 @@ public class CityBuilder : MonoBehaviour {
   public GameObject buildingPrefab;
 	public GameObject roadStraightPrefab;
 	public GameObject road4wayPrefab;
+	public Material[] buildingMaterials = new Material[0];
  
   // Number of buildings per axis.
   public int xCount = 10;
@@ -53,11 +54,15 @@ public class CityBuilder : MonoBehaviour {
 					} else {
 						//Not a street, and not a building. Let's build!
 						float height = Random.Range(minHeight, maxHeight);
+						float width = Random.Range (.7f, .9f);
+						float length = Random.Range (.7f, .9f);
+
 						position.y = height / 2f;
 						GameObject building = 
 							(GameObject) GameObject.Instantiate(buildingPrefab, position, Quaternion.identity, 
 								cityRoot.transform);
-						building.transform.localScale = new Vector3(.9f, height, .9f);
+						building.transform.localScale = new Vector3(width, height, length);
+						building.transform.GetComponent<Renderer>().material = buildingMaterials[Random.Range(0,buildingMaterials.Length)];
 					}
 				}
 
