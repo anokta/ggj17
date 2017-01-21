@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
     m_Bits: 512
   maxBuildingVelocity: 1.5
   upwardsModifier: 2
-  forcePower: 10
+  forcePower: 15
   minStableRadius: 5
   minStableSpeed: 8
   maxRadius: 25
@@ -227,13 +227,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1280588328}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 15, z: -15}
+  m_LocalRotation: {x: 0.33141357, y: -0.46193978, z: 0.19134171, w: 0.8001032}
+  m_LocalPosition: {x: 5, y: 15, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -60, z: 0}
 --- !u!1 &1489592966
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,10 +268,10 @@ MonoBehaviour:
     type: 2}
   road4wayPrefab: {fileID: 1740750664035244, guid: 2e9d40d82a34a4c4dbc35dd65fe1ef27,
     type: 2}
-  xCount: 10
-  yCount: 10
+  xCount: 20
+  yCount: 20
   minHeight: 0.5
-  maxHeight: 2
+  maxHeight: 6
 --- !u!114 &1489592968
 MonoBehaviour:
   m_ObjectHideFlags: 0

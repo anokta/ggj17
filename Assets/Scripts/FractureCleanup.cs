@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class FractureCleanup : MonoBehaviour {
   // Fragment duration.
-  public float fragmentDuration;
-
-  void Start () {
+  public float minFragmentDuration;
+  public float maxFragmentDuration;
+  public float endingMagnitude;
+  void Start() {
     StartCoroutine(Cleanup());
+    StartCoroutine(FinalCleanup());
   }
 
-  IEnumerator Cleanup () {
-    yield return new WaitForSeconds(fragmentDuration);
-    GameObject.Destroy(gameObject.GetComponent<Rigidbody>());
-    //GameObject.Destroy(gameObject);
+  IEnumerator Cleanup() {
+    yield return new WaitForSeconds(minFragmentDuration);
+    foreach (Transform child in transform)
+    {
+
+      if (child.gameObject.GetComponent<Rigidbody>().velocity.magnitude <= endingMagnitude)
+      {
+        GameObject.Destroy(child.gameObject.GetComponent<Rigidbody>());
+      }
+      else Cleanup();
+    }
+  }
+  IEnumerator FinalCleanup()
+  {
+    yield return new WaitForSeconds(maxFragmentDuration);
+    foreach (Transform child in transform)
+    {
+      GameObject.Destroy(child.gameObject.GetComponent<Rigidbody>());
+    }
   }
 }
+
