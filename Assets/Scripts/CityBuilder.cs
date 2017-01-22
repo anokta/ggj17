@@ -89,7 +89,7 @@ public class CityBuilder : MonoBehaviour {
 			GameObject building2 = 
 				(GameObject)GameObject.Instantiate (specialBldg, specialPosition, Quaternion.identity, 
 					cityRoot.transform);
-			building2.transform.localScale = new Vector3 (1.9f, 1.9f, 8f);
+			building2.transform.localScale = new Vector3 (1.9f, 1.9f, 6f);
 			building2.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
 
 			specialPoints[i] = new Vector2 (specialX2, specialY2);
