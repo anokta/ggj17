@@ -5,36 +5,30 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class IntroMessage : MonoBehaviour {
-
-    GameManager gameInstance;
+    
         public Button startButton;
+    public Text timeText;
 
-
-    public static Text AddTextToCanvas(string textString, GameObject canvasGameObject)
+    public void AddTextToCanvas()
     {
-        Text text = canvasGameObject.AddComponent<Text>();
-        text.text = textString;
-
-        Font CrackveticaFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Crackvetica.ttf");
-        text.font = CrackveticaFont;
-        text.material = CrackveticaFont.material;
-
-        return text;
+        timeText.text = "-Dont destroy the YELLOW buildings\n\n-You have " + Mathf.Round(GameManager.remainingTime) + " seconds";
+        
     }
 
-    void Start ()
+    private void Start()
     {
-        gameInstance = GetObjectByType(GameManager);
     }
 
     public void StartLevel()
     {
-        GameManager.level = 1;
-        FindObjectOfType<GameManager>().ResetGame();
+        Debug.Log("PRESSING BUTTON");
+        GameManager.playing = true;
+        transform.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update ()
+    {
+        AddTextToCanvas();
+    }
 }
