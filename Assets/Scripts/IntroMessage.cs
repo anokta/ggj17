@@ -10,11 +10,16 @@ public class IntroMessage : MonoBehaviour {
 
   public Text timeText, scoreText;
 
+  public Text startText;
 
   public Button startButton;
   private static Text timeTextStatic;
   private static Text scoreTextStatic;
   public Canvas timer;
+
+  private bool win = true;
+  private bool started = false;
+
 
   void Awake () {
     timeTextStatic = timeText;
@@ -24,20 +29,22 @@ public class IntroMessage : MonoBehaviour {
   public void AddTextToCanvas () {
     float levelThing = GameManager.level == 1 ? 0.0f : 1.0f / (float) GameManager.level;
     float time = Mathf.Round((1.0f + levelThing) * gameManager.timeMultiplier);
-    timeTextStatic.text = "You are on level" + GameManager.level + "\n-Save the YELLOW buildings\n\n-You have " + time + " seconds";
-        
+
+    timeTextStatic.text = win ? "Level" + GameManager.level + "\n\n-Save " + (GameManager.level > 1 ? ("those ") : "the") + " YELLOW building" + (GameManager.level > 1 ? "s" : "") + "\n\n-You have " + time + " seconds"
+      : "Poor YELLOW! :(";
+    startText.text = started ? (win ? "Continue" : "Restart") : "Start";
   }
 
   public static void AddBowlingScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
     scoreTextStatic.text = "You win! No survivors! You scored" + Scoring.Bowling(destroyedBuildings,
-                                                                             level,
-                                                                             timeLeft) + "Points!";
+                                                                                 level,
+                                                                                 timeLeft) + "Points!";
   }
 
   public static void AddScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
     scoreTextStatic.text = "You win! You scored" + Scoring.ScoreGame(destroyedBuildings,
-                                                                 level,
-                                                                 timeLeft) + "Points!";
+                                                                     level,
+                                                                     timeLeft) + "Points!";
   }
 
   public void StartLevel () {
@@ -48,6 +55,8 @@ public class IntroMessage : MonoBehaviour {
   }
 
   public void EndLevel (bool success) {
+    started = true;
+    win = success;
     GameManager.playing = false;
     timer.enabled = false;
     StartCoroutine("delayEnd");

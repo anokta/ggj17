@@ -1993,6 +1993,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1875596625 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114059504115648386, guid: 739d7563652d13749a57430c59630146,
+    type: 2}
+  m_PrefabInternal: {fileID: 1883062290}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1883062290
 Prefab:
   m_ObjectHideFlags: 0
@@ -2194,6 +2200,11 @@ Prefab:
       propertyPath: timeText
       value: 
       objectReference: {fileID: 909546044}
+    - target: {fileID: 114387962823891170, guid: 739d7563652d13749a57430c59630146,
+        type: 2}
+      propertyPath: startText
+      value: 
+      objectReference: {fileID: 1875596625}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 739d7563652d13749a57430c59630146, type: 2}
   m_IsPrefabParent: 0
