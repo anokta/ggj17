@@ -5,6 +5,9 @@ using UnityEngine;
 public class EarthquakeController : MonoBehaviour {
   public Collider ground;
 
+  // Audio manager.
+  public AudioManager audioManager;
+
   // Fracture fragments prefab.
   public GameObject fragmentsPrefab;
 
@@ -124,6 +127,7 @@ public class EarthquakeController : MonoBehaviour {
       Rigidbody body = collider.GetComponent<Rigidbody>();
       if (body != null) {
         if (body.velocity.magnitude > maxBuildingVelocity) {
+          audioManager.DestroyBuildingSfx();
           // TODO(anokta): Move this outside to update routine.
           int fragmentCount = (int)Mathf.Round(body.gameObject.transform.localScale.y);
           while (fragmentCount > 0)
