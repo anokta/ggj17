@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour {
 
   public static float remainingTime = 0.0f;
 
+  void Start () {
+    ResetGame();
+  }
+
   public void ResetGame () {
     controller.EndEarthquake();
     audioManager.EndEarthquakeSfx();
