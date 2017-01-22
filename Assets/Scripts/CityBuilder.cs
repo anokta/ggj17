@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CityBuilder : MonoBehaviour {
+  public IntroMessage message;
+
   public GameObject particlesPrefab;
 
   public AudioManager audioManager;
@@ -66,8 +68,7 @@ public class CityBuilder : MonoBehaviour {
           DestroyBuilding(specialBuildings[i], true);
 
           // LOSE GAME STATE for special building.
-          GuiDebug.debugText = "YOU LOST in Level " + GameManager.level + " - Precious got hurt.";
-          GameManager.playing = false;
+          message.EndLevel(false);
 
           GameObject.Instantiate(particlesPrefab, specialBuildings[i].position, 
                                  particlesPrefab.transform.rotation);
@@ -77,8 +78,7 @@ public class CityBuilder : MonoBehaviour {
     }
     if (GameManager.playing && destroyCount == numBuildings) {
       // WIN GAME STATE for destroying all.
-      GuiDebug.debugText = "YOU WON Level " + GameManager.level + " - Destroyed all the things.";
-      GameManager.playing = false;
+      message.EndLevel(true);
       ++GameManager.level;
     }
   }

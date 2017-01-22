@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+  public IntroMessage message;
+
   public CityBuilder city;
 
   public AudioManager audioManager;
@@ -36,12 +38,7 @@ public class GameManager : MonoBehaviour {
     if (playing) {
       remainingTime -= Time.deltaTime;
       if (remainingTime <= 0.0f) {
-        // LOSE GAME STATE for timeup.
-        GuiDebug.debugText = "YOU LOST in Level " + GameManager.level + " - Time's up.";
-        GameManager.playing = false;
-        playing = false;
-      } else {
-        GuiDebug.debugText = "Remaining time: " + remainingTime.ToString("F1");
+        message.EndLevel(false);
       }
     }
 #if UNITY_EDITOR
