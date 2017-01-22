@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Scoring : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+	public static int ScoreGame(int destroyedBuildings, int level, float timeLeft)
+  {
+    // Rounds down due to int cast, might want to adjust time scale for score  
+    return (int) (destroyedBuildings * level * Mathf.Clamp(timeLeft, 1f, 20f));
+  }
+
+  public static int Bowling(int destroyedBuildings, int level, float timeLeft)
+  {
+    // use bowling if all buildings including special are destroyed (alternate win)
+    return (int) (3 * destroyedBuildings * level * Mathf.Clamp(timeLeft, 1f, 20f));
+
+  }
 }
