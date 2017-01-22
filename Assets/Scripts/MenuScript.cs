@@ -40,7 +40,6 @@ public class MenuScript : MonoBehaviour
 		SceneManager.LoadScene("Main");
 
     GameManager.level = 1;
-    FindObjectOfType<GameManager>().ResetGame();
 	}
 
 	public void ExitGame ()

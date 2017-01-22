@@ -28,6 +28,10 @@ public class FracturePool : MonoBehaviour {
     for (int i = 0; i < maxPoolSize; ++i) {
       fractures[i] = ((GameObject) Instantiate(fracturePrefab)).GetComponent<FractureController>();
       fractures[i].transform.parent = fractureRoot.transform;
+      Rigidbody[] fractureChildren = fractures[i].GetComponentsInChildren<Rigidbody>();
+      foreach (Rigidbody child in fractureChildren) {
+        child.interpolation = RigidbodyInterpolation.Interpolate;
+      }
       fractures[i].gameObject.SetActive(false);
     }
   }

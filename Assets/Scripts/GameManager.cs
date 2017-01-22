@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
   public CityBuilder city;
 
+  public AudioManager audioManager;
+  public EarthquakeController controller;
+
   public FracturePool fracturePool;
 
   public float timeMultiplier = 15.0f;
@@ -15,26 +18,19 @@ public class GameManager : MonoBehaviour {
 
   public static float remainingTime = 0.0f;
 
-    public void RestartLevel()
-    {
-        city.GenerateCity(level);
-        fracturePool.GenerateFragments();
-        remainingTime = Mathf.Round((1.0f + 1.0f / (float)level) * timeMultiplier);
-    }
+  void Start () {
+    ResetGame();
+  }
 
-    public void StopLevel()
-    {
-        playing = false;
-    }
-    //public void PauseGame()
-    //{
-    //    playing = false;
-        
-    //}
-    //public void UnpauseGame()
-    //{
-    //    playing = true;
-    //}
+  public void ResetGame () {
+    controller.EndEarthquake();
+    audioManager.EndEarthquakeSfx();
+
+    city.GenerateCity(level);
+    fracturePool.GenerateFragments();
+    remainingTime = Mathf.Round((1.0f + 1.0f / (float) level) * timeMultiplier);
+    CameraShaker.intensifier = 1.0f;
+  }
 
   void Update () {
     if (playing) {
@@ -43,7 +39,6 @@ public class GameManager : MonoBehaviour {
         // LOSE GAME STATE for timeup.
         GuiDebug.debugText = "YOU LOST in Level " + GameManager.level + " - Time's up.";
         GameManager.playing = false;
-        GameManager.level = 1;
         playing = false;
       } else {
         GuiDebug.debugText = "Remaining time: " + remainingTime.ToString("F1");

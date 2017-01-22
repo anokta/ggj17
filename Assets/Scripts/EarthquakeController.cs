@@ -110,7 +110,7 @@ public class EarthquakeController : MonoBehaviour {
     wavePhasor = 0.0f;
     currentPosition = origin;
     // Set a high target position to get the furthest point in |direction|.
-    targetWavePosition = ground.bounds.ClosestPoint(origin + 100.0f * direction);
+    targetWavePosition = ground.bounds.ClosestPoint(origin + 50.0f * direction);
   }
 
   // Sends an explosive force within |radius| from the origin |position|.

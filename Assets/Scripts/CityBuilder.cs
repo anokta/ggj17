@@ -51,12 +51,12 @@ public class CityBuilder : MonoBehaviour {
       for (int i = 0; i < specialBuildings.Length; ++i) {
         if (specialBuildings[i] != null &&
             specialBuildings[i].velocity.sqrMagnitude > 4.0f * speedThreshold) {
+          CameraShaker.intensifier *= 5.0f;
           DestroyBuilding(specialBuildings[i], true);
 
           // LOSE GAME STATE for special building.
           GuiDebug.debugText = "YOU LOST in Level " + GameManager.level + " - Precious got hurt.";
           GameManager.playing = false;
-          GameManager.level = 1;
         }
      
       }
