@@ -13,8 +13,7 @@ public class IntroMessage : MonoBehaviour {
   public Text startText;
 
   public Button startButton;
-  private static Text timeTextStatic;
-  private static Text scoreTextStatic;
+  //  private static Text scoreTextStatic;
   public Canvas timer;
 
   private bool win = true;
@@ -22,8 +21,7 @@ public class IntroMessage : MonoBehaviour {
 
 
   void Awake () {
-    timeTextStatic = timeText;
-    scoreTextStatic = scoreText;
+//    scoreTextStatic = scoreText;
   }
 
   public void AddTextToCanvas () {
@@ -36,22 +34,22 @@ public class IntroMessage : MonoBehaviour {
 
     if (started && win) {
       timeText.text = "You win!!\n FYI, You scored exactly " + Scoring.ScoreGame(CityBuilder.destroyCount,
-                                                            GameManager.level,
-                                                           GameManager.remainingTime) + " Points!\n\n" + timeText.text;
-      }
+                                                                                 GameManager.level,
+                                                                                 GameManager.remainingTime) + " Points!\n\n" + timeText.text;
+    }
   }
 
-  public static void AddBowlingScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
-    scoreTextStatic.text = "You win! No survivors! You scored" + Scoring.Bowling(destroyedBuildings,
-                                                                                 level,
-                                                                                 timeLeft) + "Points!";
-  }
-
-  public static void AddScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
-    scoreTextStatic.text = "You win! You scored" + Scoring.ScoreGame(destroyedBuildings,
-                                                                     level,
-                                                                     timeLeft) + "Points!";
-  }
+  //  public static void AddBowlingScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
+  //    scoreTextStatic.text = "You win! No survivors! You scored" + Scoring.Bowling(destroyedBuildings,
+  //                                                                                 level,
+  //                                                                                 timeLeft) + "Points!";
+  //  }
+  //
+  //  public static void AddScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
+  //    scoreTextStatic.text = "You win! You scored" + Scoring.ScoreGame(destroyedBuildings,
+  //                                                                     level,
+  //                                                                     timeLeft) + "Points!";
+  //  }
 
   public void StartLevel () {
     gameManager.ResetGame();
