@@ -836,9 +836,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3caec9f173dca40a3b6b71414453e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFragmentDuration: 0.2
+  minFragmentDuration: 1
   maxFragmentDuration: 4
-  endingMagnitude: 2
+  endingMagnitude: 0.1
 --- !u!135 &135037927623257466
 SphereCollider:
   m_ObjectHideFlags: 1
