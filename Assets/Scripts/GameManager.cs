@@ -15,13 +15,26 @@ public class GameManager : MonoBehaviour {
 
   public static float remainingTime = 0.0f;
 
-  public void ResetGame () {
-    playing = false;
-    city.GenerateCity(level);
-    fracturePool.GenerateFragments();
-    remainingTime = Mathf.Round((1.0f + 1.0f / (float) level) * timeMultiplier);
-    playing = true;
-  }
+    public void RestartLevel()
+    {
+        city.GenerateCity(level);
+        fracturePool.GenerateFragments();
+        remainingTime = Mathf.Round((1.0f + 1.0f / (float)level) * timeMultiplier);
+    }
+
+    public void StopLevel()
+    {
+        playing = false;
+    }
+    //public void PauseGame()
+    //{
+    //    playing = false;
+        
+    //}
+    //public void UnpauseGame()
+    //{
+    //    playing = true;
+    //}
 
   void Update () {
     if (playing) {

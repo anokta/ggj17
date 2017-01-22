@@ -37,7 +37,7 @@ public class MenuScript : MonoBehaviour
 
 	public void StartLevel()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene("Main");
 
     GameManager.level = 1;
     FindObjectOfType<GameManager>().ResetGame();
