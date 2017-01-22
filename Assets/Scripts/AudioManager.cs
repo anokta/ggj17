@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour {
     glass.pitch = Random.Range(0.95f, 1.05f);
     glass.volume = 0.1f * Random.Range(0.75f, 1.0f);
     glass.Play();
-    ;
   }
 
   public void StartEarthquakeSfx () {

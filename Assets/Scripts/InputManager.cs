@@ -48,6 +48,12 @@ public class InputManager : MonoBehaviour {
     if (state == InputState.None) {
       return;
     }
+    if (!GameManager.playing) {
+      if (state == InputState.Held || state == InputState.Up) {
+        controller.EndEarthquake();
+      }
+      return;
+    }
 
     // TODO(anokta): Change these for touch input.
     Vector3 screenPosition = Input.mousePosition;

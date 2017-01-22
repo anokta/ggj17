@@ -73,7 +73,7 @@ public class EarthquakeController : MonoBehaviour {
         propagatingWave = false;
         targetRadius = 0.0f;
       } else {
-        float intensity = Mathf.Min(0.5f * maxRadius / minStableRadius, 0.25f * distance);
+        float intensity = Mathf.Min(0.75f * maxRadius / minStableRadius, 0.25f * distance);
         currentPosition = 
           Vector3.Lerp(currentPosition, targetWavePosition, waveSpeed * Time.deltaTime);
         currentPosition.y = waveAmplitude * intensity * Mathf.Sin(2.0f * Mathf.PI * wavePhasor);
@@ -97,6 +97,7 @@ public class EarthquakeController : MonoBehaviour {
   public void EndEarthquake () {
     currentRadius = 0.0f;
     targetRadius = 0.0f;
+    propagatingWave = false;
   }
 
   public void Intensify (Vector3 position, float percent) {
