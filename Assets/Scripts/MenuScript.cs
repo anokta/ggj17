@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+  GameManager gameManager;
 
 	public Canvas quitMenu;
 	public Button startText;
@@ -37,10 +38,14 @@ public class MenuScript : MonoBehaviour
 	public void StartLevel()
 	{
 		SceneManager.LoadScene(1);
+
+    GameManager.level = 1;
+    FindObjectOfType<GameManager>().ResetGame();
 	}
 
 	public void ExitGame ()
-	{
+  {
+    GameManager.playing = false;
 		Application.Quit ();
 	}
 

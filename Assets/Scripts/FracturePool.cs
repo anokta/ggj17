@@ -5,9 +5,11 @@ using UnityEngine;
 public class FracturePool : MonoBehaviour {
   // Contains fragments.
   public GameObject fracturePrefab;
+  public GameObject specialFracturePrefab;
 
   public int maxPoolSize = 500;
 
+  private GameObject fractureRoot;
   private FractureController[] fractures;
 
   private int currentIndex;
@@ -18,8 +20,14 @@ public class FracturePool : MonoBehaviour {
   }
 
   public void GenerateFragments () {
+    if (fractureRoot != null) {
+      GameObject.Destroy(fractureRoot);
+    }
+    fractureRoot = new GameObject("Fractures");
+
     for (int i = 0; i < maxPoolSize; ++i) {
       fractures[i] = ((GameObject) Instantiate(fracturePrefab)).GetComponent<FractureController>();
+      fractures[i].transform.parent = fractureRoot.transform;
       fractures[i].gameObject.SetActive(false);
     }
   }
@@ -28,5 +36,12 @@ public class FracturePool : MonoBehaviour {
     int index = currentIndex;
     currentIndex = (index + 1) % fractures.Length;
     return fractures[index];
+  }
+
+  public FractureController GenerateSpecialFracture () {
+    FractureController specialFracture = 
+      ((GameObject) Instantiate(specialFracturePrefab)).GetComponent<FractureController>();
+    specialFracture.transform.parent = fractureRoot.transform;
+    return specialFracture;
   }
 }
