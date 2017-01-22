@@ -5,22 +5,26 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
-  public AudioSource impact, hum, wave, crackStable, crackShake, glass;
-  public AudioClip[] glassCrashes;
+  public AudioSource impact, hum, wave, crackStable, crackShake;
+  public AudioSource[] glassCrashes;
 
   public AudioMixerSnapshot initial, humming, shaking;
 
   public float transitionTime = 1.5f;
 
-  public void Start () {
+  void Start () {
     crackStable.Play();
     crackShake.Play();
     hum.Play();
   }
 
   public void DestroyBuildingSfx () {
-    AudioClip crash = glassCrashes[Random.Range(0, glassCrashes.Length - 1)];
-    glass.PlayOneShot(crash, 0.1f);
+    AudioSource glass = glassCrashes[Random.Range(0, glassCrashes.Length - 1)];
+    glass.Stop();
+    glass.pitch = Random.Range(0.95f, 1.05f);
+    glass.volume = 0.1f * Random.Range(0.75f, 1.0f);
+    glass.Play();
+    ;
   }
 
   public void StartEarthquakeSfx () {
