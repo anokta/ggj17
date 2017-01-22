@@ -760,7 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3c1e2023b388945978af7135717c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fracturePrefab: {fileID: 0}
+  fracturePrefab: {fileID: 1000011918186974, guid: c127db828ced98949932c880283530b4,
+    type: 2}
   maxPoolSize: 500
 --- !u!4 &1459759116
 Transform:
@@ -803,7 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814770158b03264598cbf182ef4c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 566893392}
+  whichLevel: 5
   buildingPrefab: {fileID: 1069115852140368, guid: 2ced5d6c8297adc43880aea16504a196,
     type: 2}
   roadStraightPrefab: {fileID: 1783292014260984, guid: beee198f5c738db42ba9a27ca469eb87,
@@ -824,7 +826,7 @@ MonoBehaviour:
   minHeight: 0.5
   maxHeight: 6
   maxBuildingSpeed: 2
-  fracturePool: {fileID: 0}
+  fracturePool: {fileID: 1459759115}
 --- !u!114 &1489592968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   city: {fileID: 1489592967}
-  fracturePool: {fileID: 0}
+  fracturePool: {fileID: 1459759115}
 --- !u!4 &1489592969
 Transform:
   m_ObjectHideFlags: 0
