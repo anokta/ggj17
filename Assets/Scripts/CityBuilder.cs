@@ -28,6 +28,7 @@ public class CityBuilder : MonoBehaviour {
   private GameObject cityRoot = null;
 
   private Rigidbody[] buildings = null;
+  private Rigidbody specialBuildingRigidbody = null;
 
   private float speedThreshold;
 
@@ -47,6 +48,18 @@ public class CityBuilder : MonoBehaviour {
           fracture.gameObject.SetActive(true);
           GameObject.Destroy(buildings[i].gameObject);
         }
+      }
+    }
+    if (specialBuildingRigidbody != null && specialBuildingRigidbody.velocity.sqrMagnitude > speedThreshold)
+    {
+      audioManager.DestroyBuildingSfx();
+      int numFractures = Mathf.CeilToInt(12);
+      for (int f = 0; f < numFractures; ++f)
+      {
+        FractureController fracture = fracturePool.GetSpecialFracture();
+        fracture.transform.position = specialBuildingRigidbody.transform.position;
+        fracture.gameObject.SetActive(true);
+        GameObject.Destroy(specialBuildingRigidbody.gameObject);
       }
     }
   }
@@ -83,6 +96,7 @@ public class CityBuilder : MonoBehaviour {
 		GameObject building2 = 
 			(GameObject)GameObject.Instantiate (specialBldg, specialPosition, Quaternion.identity, 
 				cityRoot.transform);
+    specialBuildingRigidbody = building2.GetComponent<Rigidbody>();
 		building2.transform.localScale = new Vector3 (1.9f, 1.9f, 8f);
 		building2.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
 

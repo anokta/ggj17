@@ -6,6 +6,7 @@ public class FracturePool : MonoBehaviour {
   // Contains fragments.
   public GameObject fracturePrefab;
 
+  public GameObject specialFracturePrefab;
   public int maxPoolSize = 500;
 
   private FractureController[] fractures;
@@ -28,5 +29,9 @@ public class FracturePool : MonoBehaviour {
     int index = currentIndex;
     currentIndex = (index + 1) % fractures.Length;
     return fractures[index];
+  }
+  public FractureController GetSpecialFracture()
+  {
+    return ((GameObject) Instantiate(specialFracturePrefab)).GetComponent<FractureController>();
   }
 }

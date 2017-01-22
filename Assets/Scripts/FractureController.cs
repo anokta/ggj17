@@ -36,7 +36,7 @@ public class FractureController : MonoBehaviour {
     yield return new WaitForSeconds(minFragmentDuration);
     for (int i = 0; i < fragmentBodies.Length; ++i) {
       if (fragmentBodies[i].velocity.sqrMagnitude < endingMagnitude) {
-        // fragmentBodies[i].isKinematic = true;
+        fragmentBodies[i].isKinematic = true;
       }
     }
     sphereCollider.enabled = false;
@@ -45,7 +45,7 @@ public class FractureController : MonoBehaviour {
   IEnumerator FinalCleanup () {
     yield return new WaitForSeconds(maxFragmentDuration);
     for (int i = 0; i < fragmentBodies.Length; ++i) {
-      // fragmentBodies[i].isKinematic = true;
+      fragmentBodies[i].isKinematic = true;
     }
   }
 }
