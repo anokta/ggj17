@@ -22,7 +22,9 @@ public class IntroMessage : MonoBehaviour {
   }
 
   public void AddTextToCanvas () {
-    timeTextStatic.text = "You are on level" + GameManager.level + "\n-Save the YELLOW buildings\n\n-You have " + Mathf.Round(GameManager.remainingTime) + " seconds";
+    float levelThing = GameManager.level == 1 ? 0.0f : 1.0f / (float) GameManager.level;
+    float time = Mathf.Round((1.0f + levelThing) * gameManager.timeMultiplier);
+    timeTextStatic.text = "You are on level" + GameManager.level + "\n-Save the YELLOW buildings\n\n-You have " + time + " seconds";
         
   }
 

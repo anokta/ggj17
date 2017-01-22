@@ -485,6 +485,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &909546044 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114214013567170638, guid: 739d7563652d13749a57430c59630146,
+    type: 2}
+  m_PrefabInternal: {fileID: 1883062290}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1056270697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1291,7 @@ MonoBehaviour:
   audioManager: {fileID: 566893392}
   controller: {fileID: 1131378265}
   fracturePool: {fileID: 1459759115}
-  timeMultiplier: 10
+  timeMultiplier: 20
 --- !u!4 &1489592969
 Transform:
   m_ObjectHideFlags: 0
@@ -2183,6 +2189,11 @@ Prefab:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1489592968}
+    - target: {fileID: 114387962823891170, guid: 739d7563652d13749a57430c59630146,
+        type: 2}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 909546044}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 739d7563652d13749a57430c59630146, type: 2}
   m_IsPrefabParent: 0

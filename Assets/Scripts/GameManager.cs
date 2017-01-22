@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour {
     audioManager.EndEarthquakeSfx();
 
     city.GenerateCity(level);
-    fracturePool.GenerateFragments();
-    remainingTime = Mathf.Round((1.0f + 1.0f / (float) level) * timeMultiplier);
+    fracturePool.GenerateFragments();    
+    float levelThing = GameManager.level == 1 ? 0.0f : 1.0f / (float) level;
+    remainingTime = Mathf.Round((1.0f + levelThing) * timeMultiplier);
     CameraShaker.intensifier = 1.0f;
   }
 
