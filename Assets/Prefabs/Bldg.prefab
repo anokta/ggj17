@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4995491654948280}
   - component: {fileID: 33388911069170334}
   - component: {fileID: 23130861553802752}
-  - component: {fileID: 95607884155190190}
+  - component: {fileID: 65642821501290224}
+  - component: {fileID: 114008421267450288}
+  - component: {fileID: 54652607897700386}
   m_Layer: 9
   m_Name: Bldg
   m_TagString: Untagged
@@ -80,20 +82,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069115852140368}
   m_Mesh: {fileID: 4300000, guid: da083bcb78c268944b330260946c3c7f, type: 3}
---- !u!95 &95607884155190190
-Animator:
-  serializedVersion: 3
+--- !u!54 &54652607897700386
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069115852140368}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65642821501290224
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069115852140368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114008421267450288
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069115852140368}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: da083bcb78c268944b330260946c3c7f, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5954c07e461d7c249847769b87f74330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDuration: 3

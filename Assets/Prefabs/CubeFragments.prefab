@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65000011415069530}
   - component: {fileID: 23000011750891066}
   - component: {fileID: 54000012406655366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 65000012146818510}
   - component: {fileID: 23000011091129562}
   - component: {fileID: 54000011370025962}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 65000013179860710}
   - component: {fileID: 23000014211413676}
   - component: {fileID: 54000012510923766}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4000012794184768}
   - component: {fileID: 114000010602231344}
   - component: {fileID: 135037927623257466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CubeFragments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 65000011668474274}
   - component: {fileID: 23000010577829972}
   - component: {fileID: 54000010026373880}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 65000011228182356}
   - component: {fileID: 23000010235708872}
   - component: {fileID: 54000010685881604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 65000012129532238}
   - component: {fileID: 23000011675360944}
   - component: {fileID: 54000012160340738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 65000010553916896}
   - component: {fileID: 23000013758527054}
   - component: {fileID: 54000010116069398}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 65000013232617972}
   - component: {fileID: 23000012260031096}
   - component: {fileID: 54000012740575456}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fragment4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,9 +836,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3caec9f173dca40a3b6b71414453e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFragmentDuration: 0.2
+  minFragmentDuration: 1
   maxFragmentDuration: 4
-  endingMagnitude: 2
+  endingMagnitude: 0.1
 --- !u!135 &135037927623257466
 SphereCollider:
   m_ObjectHideFlags: 1
