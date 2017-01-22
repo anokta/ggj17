@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2091820970}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -201,6 +201,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1001 &406054517
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1131378266}
+    m_Modifications:
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c23aad33d5afb3348961fd01d9755588, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &412082324
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2b3a907182f144ab766895fb5e3aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 1473593233}
   ground: {fileID: 1762848917}
   fragmentsPrefab: {fileID: 1000011918186974, guid: c127db828ced98949932c880283530b4,
     type: 2}
@@ -598,6 +641,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1473593235}
   - {fileID: 1972536549}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1172,6 +1216,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!198 &1473593233 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198731712102740172, guid: c23aad33d5afb3348961fd01d9755588,
+    type: 2}
+  m_PrefabInternal: {fileID: 406054517}
+--- !u!4 &1473593235 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4504299717733032, guid: c23aad33d5afb3348961fd01d9755588,
+    type: 2}
+  m_PrefabInternal: {fileID: 406054517}
 --- !u!1 &1489592966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814770158b03264598cbf182ef4c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlesPrefab: {fileID: 1303657771324042, guid: 4d845a58ea4213441bf8ea1695487d29,
+    type: 2}
   audioManager: {fileID: 566893392}
   buildingPrefab: {fileID: 1069115852140368, guid: 2ced5d6c8297adc43880aea16504a196,
     type: 2}
@@ -1221,6 +1277,7 @@ MonoBehaviour:
   minHeight: 0.5
   maxHeight: 6
   maxBuildingSpeed: 2.5
+  minParticleSpawnInterval: 0.5
   fracturePool: {fileID: 1459759115}
 --- !u!114 &1489592968
 MonoBehaviour:
@@ -1291,9 +1348,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: 840c921690f142948a4a553f78005f27,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 15af981027434eb408a6cc2011cf4748, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7cce24e433ec720449765707c635cfaa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.125
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2133,7 +2190,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1131378266}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1972536550
 MonoBehaviour:

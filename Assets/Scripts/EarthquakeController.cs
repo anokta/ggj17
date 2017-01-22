@@ -93,7 +93,7 @@ public class EarthquakeController : MonoBehaviour {
     ParticleSystem.MainModule main = particles.main;
     main.startSizeMultiplier = 0.5f * currentRadius;
     main.startSpeedMultiplier = 0.5f * currentRadius;
-    ParticleSystem.EmissionModule emission = particles.emission;
+//    ParticleSystem.EmissionModule emission = particles.emission;
   }
 
   public void StartEarthquake (Vector3 position) {
