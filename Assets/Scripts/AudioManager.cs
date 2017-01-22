@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour {
     humming.TransitionTo(0.25f * transitionTime);
   }
 
-  public void EndEarthquakeSfx () { 
+  public void EndEarthquakeSfx () {
     initial.TransitionTo(2.0f * transitionTime);
   }
 
