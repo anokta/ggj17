@@ -40,7 +40,7 @@ public class CityBuilder : MonoBehaviour {
   private float speedThreshold;
 
   private int numBuildings;
-  private int destroyCount;
+  public static int destroyCount;
 
   void Awake () {
     buildings = new Rigidbody[xCount * yCount / 2];

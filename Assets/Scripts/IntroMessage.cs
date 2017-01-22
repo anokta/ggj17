@@ -30,9 +30,15 @@ public class IntroMessage : MonoBehaviour {
     float levelThing = GameManager.level == 1 ? 0.0f : 1.0f / (float) GameManager.level;
     float time = Mathf.Round((1.0f + levelThing) * gameManager.timeMultiplier);
 
-    timeTextStatic.text = win ? "Level" + GameManager.level + "\n\n-Save " + (GameManager.level > 1 ? ("those ") : "the") + " YELLOW building" + (GameManager.level > 1 ? "s" : "") + "\n\n-You have " + time + " seconds"
+    timeText.text = win ? "Level" + GameManager.level + "\n\n-Save " + (GameManager.level > 1 ? ("those ") : "the") + " YELLOW building" + (GameManager.level > 1 ? "s" : "") + "\n\n-You have " + time + " seconds"
       : "Poor YELLOW! :(";
     startText.text = started ? (win ? "Continue" : "Restart") : "Start";
+
+    if (started && win) {
+      timeText.text = "You win!!\n FYI, You scored exactly " + Scoring.ScoreGame(CityBuilder.destroyCount,
+                                                            GameManager.level,
+                                                           GameManager.remainingTime) + " Points!\n\n" + timeText.text;
+      }
   }
 
   public static void AddBowlingScoreToCanvas (int destroyedBuildings, int level, float timeLeft) {
@@ -56,7 +62,7 @@ public class IntroMessage : MonoBehaviour {
 
   public void EndLevel (bool success) {
     started = true;
-    win = success;
+    win = success;  
     GameManager.playing = false;
     timer.enabled = false;
     StartCoroutine("delayEnd");
