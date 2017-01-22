@@ -6,6 +6,8 @@ public class CityBuilder : MonoBehaviour {
   public AudioManager audioManager;
 
   // Building prefab.
+	public int whichLevel = 1;
+
   public GameObject buildingPrefab;
 	public GameObject roadStraightPrefab;
 	public GameObject road4wayPrefab;
@@ -28,6 +30,7 @@ public class CityBuilder : MonoBehaviour {
   private GameObject cityRoot = null;
 
   private Rigidbody[] buildings = null;
+  // Handle multiple tomorrow
   private Rigidbody specialBuildingRigidbody = null;
 
   private float speedThreshold;
@@ -69,44 +72,55 @@ public class CityBuilder : MonoBehaviour {
       GameObject.Destroy(cityRoot);
     }
     cityRoot = new GameObject("City");
-		int specialX = 4;
-		float specialX2 = 4;
-		int specialY = 3;
-		float specialY2 = 3;
 
-		while (specialX % 4 == 0) {
-			specialX = Random.Range (0, xCount);
-			if ((specialX + 1) % 4 == 0) {
-				specialX2 = specialX - .5f;
-			} else {
-				specialX2 = specialX + .5f;
+		Vector2[] specialPoints = new Vector2[whichLevel];
+		for (var i = 0; i < whichLevel; i++) {
+
+			int specialX = 4;
+			float specialX2 = 4;
+			int specialY = 3;
+			float specialY2 = 3;
+
+			while (specialX % 4 == 0) {
+				specialX = Random.Range (0, xCount);
+				if ((specialX + 1) % 4 == 0) {
+					specialX2 = specialX - .5f;
+				} else {
+					specialX2 = specialX + .5f;
+				}
 			}
-		}
-		while (specialY % 3 == 0) {
-			specialY = Random.Range (0, yCount);
-			if ((specialY + 1) % 3 == 0) {
-				specialY2 = specialY - .5f;
-			} else {
-				specialY2 = specialY + .5f;
+			while (specialY % 3 == 0) {
+				specialY = Random.Range (0, yCount);
+				if ((specialY + 1) % 3 == 0) {
+					specialY2 = specialY - .5f;
+				} else {
+					specialY2 = specialY + .5f;
+				}
 			}
+
+			var specialPosition = new Vector3 (specialX2 - xCount, 4f, specialY2 - yCount);
+      
+		  GameObject building2 = 
+			  (GameObject)GameObject.Instantiate (specialBldg, specialPosition, Quaternion.identity, 
+				  cityRoot.transform);
+      specialBuildingRigidbody = building2.GetComponent<Rigidbody>();
+		  building2.transform.localScale = new Vector3 (1.9f, 1.9f, 8f);
+		  building2.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
+			specialPoints[i] = new Vector2 (specialX2, specialY2);
 		}
-
-		var specialPosition = new Vector3 (specialX2 - xCount, 4f, specialY2 - yCount);
-
-		GameObject building2 = 
-			(GameObject)GameObject.Instantiate (specialBldg, specialPosition, Quaternion.identity, 
-				cityRoot.transform);
-    specialBuildingRigidbody = building2.GetComponent<Rigidbody>();
-		building2.transform.localScale = new Vector3 (1.9f, 1.9f, 8f);
-		building2.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
 
     int index = 0;
 		for (int x = 0; x < xCount; ++x) {
 			for (int y = 0; y < yCount; ++y) {
+				bool moveForward = true;
+				for (int i = 0; i < specialPoints.Length; i++) {
+					if ((x == specialPoints[i].x + .5f || x == specialPoints[i].x - .5f) && (y == specialPoints[i].y + .5f || y == specialPoints[i].y - .5f)) {
+						moveForward = false;
+					}
+				}
 
-			if ((x == specialX2 + .5f || x == specialX2 - .5f) && (y == specialY2 + .5f || y == specialY2 - .5f)) {
 
-			} else {
+				if(moveForward) {
 					Vector3 position = new Vector3 (x - xCount, .05f, y - yCount);
 
 					//Every fourth tile is a road
