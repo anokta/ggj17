@@ -294,6 +294,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114017923266141950, guid: ef2ccc1bfe9d3004b96397e15149b9b0,
+        type: 2}
+      propertyPath: maxPoolSize
+      value: 5000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef2ccc1bfe9d3004b96397e15149b9b0, type: 2}
   m_IsPrefabParent: 0
@@ -544,7 +549,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1280588328}
   m_LocalRotation: {x: 0.33141357, y: -0.46193978, z: 0.19134171, w: 0.8001032}
-  m_LocalPosition: {x: 5, y: 15, z: -20}
+  m_LocalPosition: {x: 5, y: 15, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -701,8 +706,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c7e2556635ac406489c68afafbf5df40, type: 2}
   - {fileID: 2100000, guid: 6f0bf94e76d019b498d29d23a4ab79db, type: 2}
   - {fileID: 2100000, guid: 9723a0a9995b9a14593df0aeda95977e, type: 2}
-  xCount: 20
-  yCount: 20
+  xCount: 200
+  yCount: 200
   minHeight: 0.5
   maxHeight: 6
 --- !u!114 &1489592968
