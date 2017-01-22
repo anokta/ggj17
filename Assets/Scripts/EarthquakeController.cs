@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EarthquakeController : MonoBehaviour {
+  public ParticleSystem particles;
+
   public Collider ground;
 
   // Fracture fragments prefab.
@@ -85,6 +87,13 @@ public class EarthquakeController : MonoBehaviour {
         }
       }
     }
+    Vector3 particlePosition = currentPosition;
+    particlePosition.y *= 0.1f;
+    particles.transform.position = particlePosition;
+    ParticleSystem.MainModule main = particles.main;
+    main.startSizeMultiplier = 0.5f * currentRadius;
+    main.startSpeedMultiplier = 0.5f * currentRadius;
+    ParticleSystem.EmissionModule emission = particles.emission;
   }
 
   public void StartEarthquake (Vector3 position) {

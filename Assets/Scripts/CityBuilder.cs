@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CityBuilder : MonoBehaviour {
+  public GameObject particlesPrefab;
+
   public AudioManager audioManager;
 
   // Building prefab.
@@ -21,6 +23,9 @@ public class CityBuilder : MonoBehaviour {
   public float maxHeight = 2.0f;
 
   public float maxBuildingSpeed = 2.0f;
+
+  public float minParticleSpawnInterval = 0.5f;
+  private float lastParticleSpawnTime;
 
   public FracturePool fracturePool;
 
@@ -45,6 +50,12 @@ public class CityBuilder : MonoBehaviour {
       if (buildings[i] != null && buildings[i].velocity.sqrMagnitude > speedThreshold) {
         DestroyBuilding(buildings[i], false);
         ++destroyCount;
+
+        if (Time.time - lastParticleSpawnTime > minParticleSpawnInterval) {
+          lastParticleSpawnTime = Time.time;
+          GameObject.Instantiate(particlesPrefab, buildings[i].position, 
+                                 particlesPrefab.transform.rotation);
+        }
       }
     }
     if (specialBuildings != null) {
@@ -57,6 +68,9 @@ public class CityBuilder : MonoBehaviour {
           // LOSE GAME STATE for special building.
           GuiDebug.debugText = "YOU LOST in Level " + GameManager.level + " - Precious got hurt.";
           GameManager.playing = false;
+
+          GameObject.Instantiate(particlesPrefab, specialBuildings[i].position, 
+                                 particlesPrefab.transform.rotation);
         }
      
       }
