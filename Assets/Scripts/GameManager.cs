@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
   void Start () {
     city.GenerateCity();
+    FragmentPool.current.GenerateFragments();
   }
 
   void Update () {
@@ -16,6 +17,6 @@ public class GameManager : MonoBehaviour {
       // Debug reset.
       city.GenerateCity();
     }
-  }
 #endif
+  }
 }

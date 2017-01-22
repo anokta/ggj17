@@ -17,9 +17,10 @@ public class FractureCleanup : MonoBehaviour {
     foreach (Transform child in transform)
     {
 
-      if (child.gameObject.GetComponent<Rigidbody>().velocity.magnitude <= endingMagnitude)
+      if (child.gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude <= endingMagnitude)
       {
         GameObject.Destroy(child.gameObject.GetComponent<Rigidbody>());
+        //Debug.Log("Destroyed");
       }
       else Cleanup();
     }

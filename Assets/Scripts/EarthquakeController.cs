@@ -11,8 +11,8 @@ public class EarthquakeController : MonoBehaviour {
   // Layer mask for destructable objects.
   public LayerMask destructableMask;
 
-  public int maxTotalFragments = 300;
-  int currentFragments = 0;
+  //public int maxTotalFragments = 300;
+  //int currentFragments = 0;
 
   public float maxBuildingVelocity = 0.5f;
 
@@ -126,29 +126,38 @@ public class EarthquakeController : MonoBehaviour {
         if (body.velocity.magnitude > maxBuildingVelocity) {
           // TODO(anokta): Move this outside to update routine.
           int fragmentCount = (int)Mathf.Round(body.gameObject.transform.localScale.y);
-          GameObject.Destroy(body.gameObject);
           while (fragmentCount > 0)
           {
             fragmentCount -= 1;
-            if (currentFragments < maxTotalFragments)
-            {
-              GameObject fragments =
-              (GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
-                            collider.transform.rotation);
-              currentFragments += 8;
+            //if (currentFragments < maxTotalFragments)
+            //{
+            GameObject fragments = FragmentPool.current.GetPooledFragments(1);
+
+              //(GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
+              //              collider.transform.rotation);
+            //currentFragments += 8;
+            if (fragments != null) { 
+              fragments.transform.position = body.transform.position;
+              fragments.transform.rotation = body.transform.rotation;
+              fragments.SetActive(true);
 
               Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
-              if (fragmentBodies != null)
-              {
-                foreach (var fragmentBody in fragmentBodies)
+                if (fragmentBodies != null)
                 {
-                  fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+                  foreach (var fragmentBody in fragmentBodies)
+                  {
+                    fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+                  }
                 }
-              }
+
+              GameObject.Destroy(body.gameObject);
             }
           }
+
         } else {
-          body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+            body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
+          // A few buildings are not getting caught - if they aren't initially collided with?
+          //body.GetComponent<BuildingCleanup>().RemoveRigidbody();
         }
       }      
     }
