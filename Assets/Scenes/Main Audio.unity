@@ -398,10 +398,9 @@ MonoBehaviour:
   destructableMask:
     serializedVersion: 2
     m_Bits: 512
-  maxTotalFragments: 500
   maxBuildingVelocity: 1.5
   upwardsModifier: 2
-  forcePower: 15
+  forcePower: 10
   minStableRadius: 5
   minStableSpeed: 8
   maxRadius: 25
@@ -502,13 +501,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1280588328}
-  m_LocalRotation: {x: 0.33141357, y: -0.46193978, z: 0.19134171, w: 0.8001032}
-  m_LocalPosition: {x: 5, y: 15, z: -20}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 15, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: -60, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &1320846730
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,23 +646,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814770158b03264598cbf182ef4c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 1610278609485158, guid: 2ced5d6c8297adc43880aea16504a196,
+  buildingPrefab: {fileID: 1187135839978816, guid: 22e481e913905aa42ab1419fb1092a6d,
     type: 2}
   roadStraightPrefab: {fileID: 1783292014260984, guid: beee198f5c738db42ba9a27ca469eb87,
     type: 2}
   road4wayPrefab: {fileID: 1740750664035244, guid: 2e9d40d82a34a4c4dbc35dd65fe1ef27,
     type: 2}
-  buildingMaterials:
-  - {fileID: 2100000, guid: 50de240639882ca43b8ec3068ada74a9, type: 2}
-  - {fileID: 2100000, guid: fa1c89b478eb37645bdb9a3ca4a59fec, type: 2}
-  - {fileID: 2100000, guid: cc6cd486069c1834081d80a2165d0a8c, type: 2}
-  - {fileID: 2100000, guid: c7e2556635ac406489c68afafbf5df40, type: 2}
-  - {fileID: 2100000, guid: 6f0bf94e76d019b498d29d23a4ab79db, type: 2}
-  - {fileID: 2100000, guid: 9723a0a9995b9a14593df0aeda95977e, type: 2}
   xCount: 20
-  yCount: 20
+  yCount: 30
   minHeight: 0.5
-  maxHeight: 6
+  maxHeight: 2
 --- !u!114 &1489592968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,8 +825,8 @@ MonoBehaviour:
   audioManager: {fileID: 566893392}
   maxRaycastDistance: 100
   maxDeltaMagnitude: 2
-  minSwipeDelta: 2
-  minSwipeSpeed: 4
+  minSwipeDelta: 3
+  minSwipeSpeed: 5
   controller: {fileID: 1131378265}
 --- !u!4 &1752989115
 Transform:
