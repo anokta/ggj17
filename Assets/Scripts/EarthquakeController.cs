@@ -5,19 +5,11 @@ using UnityEngine;
 public class EarthquakeController : MonoBehaviour {
   public Collider ground;
 
-  // Audio manager.
-  public AudioManager audioManager;
-
   // Fracture fragments prefab.
   public GameObject fragmentsPrefab;
 
   // Layer mask for destructable objects.
   public LayerMask destructableMask;
-
-  //public int maxTotalFragments = 300;
-  //int currentFragments = 0;
-
-  public float maxBuildingVelocity = 0.5f;
 
   // Upwards modifier to lift objects via explosion.
   public float upwardsModifier = 2.0f;
@@ -126,43 +118,7 @@ public class EarthquakeController : MonoBehaviour {
     foreach (var collider in colliders) {
       Rigidbody body = collider.GetComponent<Rigidbody>();
       if (body != null) {
-        if (body.velocity.magnitude > maxBuildingVelocity) {
-          audioManager.DestroyBuildingSfx();
-          // TODO(anokta): Move this outside to update routine.
-          int fragmentCount = (int)Mathf.Round(body.gameObject.transform.localScale.y);
-          while (fragmentCount > 0)
-          {
-            fragmentCount -= 1;
-            //if (currentFragments < maxTotalFragments)
-            //{
-            GameObject fragments = FragmentPool.current.GetPooledFragments(1);
-
-              //(GameObject)GameObject.Instantiate(fragmentsPrefab, collider.transform.position,
-              //              collider.transform.rotation);
-            //currentFragments += 8;
-            if (fragments != null) { 
-              fragments.transform.position = body.transform.position;
-              fragments.transform.rotation = body.transform.rotation;
-              fragments.SetActive(true);
-
-              Rigidbody[] fragmentBodies = fragments.GetComponentsInChildren<Rigidbody>();
-                if (fragmentBodies != null)
-                {
-                  foreach (var fragmentBody in fragmentBodies)
-                  {
-                    fragmentBody.AddExplosionForce(power, position, radius, upwardsModifier, mode);
-                  }
-                }
-
-              GameObject.Destroy(body.gameObject);
-            }
-          }
-
-        } else {
-            body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
-          // A few buildings are not getting caught - if they aren't initially collided with?
-          //body.GetComponent<BuildingCleanup>().RemoveRigidbody();
-        }
+        body.AddExplosionForce(power, position, radius, upwardsModifier, mode);
       }      
     }
   }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-
   public CityBuilder city;
+
+  public FracturePool fracturePool;
 
   void Start () {
     city.GenerateCity();
-    FragmentPool.current.GenerateFragments();
+    fracturePool.GenerateFragments();
   }
 
   void Update () {
