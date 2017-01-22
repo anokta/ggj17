@@ -509,13 +509,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 1762848917}
-  audioManager: {fileID: 566893392}
   fragmentsPrefab: {fileID: 1000011918186974, guid: c127db828ced98949932c880283530b4,
     type: 2}
   destructableMask:
     serializedVersion: 2
     m_Bits: 512
-  maxBuildingVelocity: 1.5
   upwardsModifier: 2
   forcePower: 50
   minStableRadius: 5
@@ -745,7 +743,7 @@ GameObject:
   - component: {fileID: 1459759116}
   - component: {fileID: 1459759115}
   m_Layer: 0
-  m_Name: Fragment Pool
+  m_Name: Pool Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,9 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3c1e2023b388945978af7135717c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledFragment: {fileID: 1000011918186974, guid: c127db828ced98949932c880283530b4,
+  fracturePrefab: {fileID: 1000011918186974, guid: c127db828ced98949932c880283530b4,
     type: 2}
-  pooledFragmentContainer: []
   maxPoolSize: 500
 --- !u!4 &1459759116
 Transform:
@@ -807,6 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814770158b03264598cbf182ef4c20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 566893392}
   buildingPrefab: {fileID: 1069115852140368, guid: 2ced5d6c8297adc43880aea16504a196,
     type: 2}
   roadStraightPrefab: {fileID: 1783292014260984, guid: beee198f5c738db42ba9a27ca469eb87,
@@ -824,6 +822,8 @@ MonoBehaviour:
   yCount: 30
   minHeight: 0.5
   maxHeight: 6
+  maxBuildingSpeed: 2.5
+  fracturePool: {fileID: 1459759115}
 --- !u!114 &1489592968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   city: {fileID: 1489592967}
+  fracturePool: {fileID: 1459759115}
 --- !u!4 &1489592969
 Transform:
   m_ObjectHideFlags: 0

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33388911069170334}
   - component: {fileID: 23130861553802752}
   - component: {fileID: 65642821501290224}
-  - component: {fileID: 114008421267450288}
   - component: {fileID: 54652607897700386}
   m_Layer: 9
   m_Name: Bldg
@@ -109,15 +108,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114008421267450288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1069115852140368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bedc102b51cd13b4a8cbddcf6629198d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDuration: 3

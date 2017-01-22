@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CityBuilder : MonoBehaviour {
+  public AudioManager audioManager;
+
   // Building prefab.
   public GameObject buildingPrefab;
 	public GameObject roadStraightPrefab;
@@ -18,10 +20,38 @@ public class CityBuilder : MonoBehaviour {
   public float minHeight = 0.5f;
   public float maxHeight = 2.0f;
 
+  public float maxBuildingSpeed = 2.0f;
+
+  public FracturePool fracturePool;
+
   // Root game object to hold buildings.
   private GameObject cityRoot = null;
 
-	public void GenerateCity () {
+  private Rigidbody[] buildings = null;
+
+  private float speedThreshold;
+
+  void Awake () {
+    buildings = new Rigidbody[xCount * yCount];
+    speedThreshold = Mathf.Pow(maxBuildingSpeed, 2.0f);
+  }
+
+  void Update () {
+    for (int i = 0; i < buildings.Length; ++i) {
+      if (buildings[i] != null && buildings[i].velocity.sqrMagnitude > speedThreshold) {
+        audioManager.DestroyBuildingSfx();
+        int numFractures = Mathf.CeilToInt(buildings[i].transform.localScale.y);
+        for (int f = 0; f < numFractures; ++f) {
+          FractureController fracture = fracturePool.GetNextFracture();
+          fracture.transform.position = buildings[i].transform.position;
+          fracture.gameObject.SetActive(true);
+          GameObject.Destroy(buildings[i].gameObject);
+        }
+      }
+    }
+  }
+
+  public void GenerateCity () {
     if (cityRoot != null) {
       GameObject.Destroy(cityRoot);
     }
@@ -56,13 +86,14 @@ public class CityBuilder : MonoBehaviour {
 		building2.transform.localScale = new Vector3 (1.9f, 1.9f, 8f);
 		building2.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
 
-    for (int x = 0; x < xCount; ++x) {
+    int index = 0;
+		for (int x = 0; x < xCount; ++x) {
 			for (int y = 0; y < yCount; ++y) {
-				Vector3 position = new Vector3(x - xCount, .05f, y - yCount);
 
-				if ((x == specialX2 + .5f || x == specialX2 - .5f) && (y == specialY2 + .5f || y == specialY2 - .5f)) {
+			if ((x == specialX2 + .5f || x == specialX2 - .5f) && (y == specialY2 + .5f || y == specialY2 - .5f)) {
 
-				} else {
+			} else {
+					Vector3 position = new Vector3 (x - xCount, .05f, y - yCount);
 
 					//Every fourth tile is a road
 					if (x % 4 == 0) {
@@ -97,12 +128,13 @@ public class CityBuilder : MonoBehaviour {
 									cityRoot.transform);
 							building.transform.localScale = new Vector3 (width, length, height);
 							building.transform.localEulerAngles = new Vector3 (-90f, 0f, 0f);
-							building.transform.GetComponent<Renderer> ().material = buildingMaterials [Random.Range (0, buildingMaterials.Length)];
+							building.GetComponent<Renderer> ().material = 
+              buildingMaterials [Random.Range (0, buildingMaterials.Length)];
+							buildings [index++] = building.GetComponent<Rigidbody> ();
 						}
 					}
 				}
-
-      }
+			}
     }
   }
 }
